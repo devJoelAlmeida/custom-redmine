@@ -67,7 +67,7 @@ case "$1" in
 				file_env 'REDMINE_DB_ENCODING' 'utf8'
 				
 				mkdir -p "$(dirname "$REDMINE_DB_DATABASE")"
-				chown -R redmine:redmine "$(dirname "$REDMINE_DB_DATABASE")"
+				chown -R root:root "$(dirname "$REDMINE_DB_DATABASE")"
 			fi
 			
 			REDMINE_DB_ADAPTER="$adapter"
@@ -108,7 +108,7 @@ case "$1" in
 		fi
 		
 		# https://www.redmine.org/projects/redmine/wiki/RedmineInstall#Step-8-File-system-permissions
-		chown -R redmine:redmine files log public/plugin_assets
+		chown -R root:root files log public/plugin_assets
 		chmod -R 755 files log tmp public/plugin_assets
 		
 		# remove PID file to enable restarting the container

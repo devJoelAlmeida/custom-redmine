@@ -1,7 +1,7 @@
 FROM ruby:2.2-slim
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r redmine && useradd -r -g redmine redmine
+RUN groupadd -r root && useradd -r -g root root
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
@@ -56,7 +56,7 @@ RUN wget -O redmine.tar.gz "https://www.redmine.org/releases/redmine-${REDMINE_V
 	&& tar -xvf redmine.tar.gz --strip-components=1 \
 	&& rm redmine.tar.gz files/delete.me log/delete.me \
 	&& mkdir -p tmp/pdf public/plugin_assets \
-	&& chown -R redmine:redmine ./
+	&& chown -R root:root ./
 
 RUN buildDeps=' \
 		gcc \
